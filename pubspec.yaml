@@ -37,7 +37,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
 
-  bloc: ^8.1.0
+  bloc: ^8.1.1
   flutter_bloc: ^8.1.1
   conditional_builder_null_safety: ^0.0.6
     #  google_ml_kit: ^0.12.0
@@ -46,13 +46,14 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   percent_indicator: ^4.0.1
   flutter_zoom_drawer: ^3.0.3
-  dio: ^4.0.6
+  dio: ^5.0.0
   shared_preferences: ^2.0.15
   fluttertoast: ^8.0.9
   image_cropper: ^3.0.1
   simple_animations: ^4.2.0
   supercharged: ^2.1.1
   google_mlkit_text_recognition: ^0.5.0
+  flutter_slidable: ^2.0.0
 
 dev_dependencies:
   flutter_test:

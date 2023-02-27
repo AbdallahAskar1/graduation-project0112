@@ -14,6 +14,7 @@ import '../../../components/constants.dart';
 import '../../../models/login_model.dart';
 import '../../../shared/end_points.dart';
 import '../../../shared/network/dio_helper.dart';
+import '../../../style/icon_broken.dart';
 import '../../home/home_screen.dart';
 import '../../login/cubit/cubit.dart';
 import 'state.dart';
@@ -23,14 +24,14 @@ class RegisterCubit extends Cubit<RegisterStates> {
 
   static RegisterCubit get(context) => BlocProvider.of(context);
 
-  IconData suffix = Icons.visibility_outlined;
+  IconData suffix = IconBroken.Show;
   bool isPassword = true;
 
   bool isRigestaring=false;
   void changePasswordVisibility()
   {
     isPassword = !isPassword;
-    suffix = isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined ;
+    suffix = isPassword ? IconBroken.Show : IconBroken.Hide ;
 
     emit(RegisterChangePasswordVisibilityState());
   }

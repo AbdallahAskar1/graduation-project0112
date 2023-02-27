@@ -1,8 +1,6 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../animation/fade_animation.dart';
 import '../../components/components.dart';
 import '../../shared/remote/cash_helper.dart';
 import '../../style/icon_broken.dart';
@@ -10,14 +8,6 @@ import '../home/home_screen.dart';
 import '../register/register_screen.dart';
 import 'cubit/cubit.dart';
 import 'cubit/state.dart';
-// import 'package:untitled1/animation/fade_animation.dart';
-// import 'package:untitled1/components/components.dart';
-// import 'package:untitled1/modules/Login/cubit/cubit.dart';
-// import 'package:untitled1/modules/Login/cubit/state.dart';
-// import 'package:untitled1/modules/home/home_screen.dart';
-// import 'package:untitled1/shared/remote/cache_helper.dart';
-// import 'package:untitled1/style/icon_broken.dart';
-// import '../register/Register_Screen.dart';
 
 class LoginScreen extends StatelessWidget {
   var emailController = TextEditingController();
@@ -48,145 +38,133 @@ class LoginScreen extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
               body: Form(
-                key: formKey,
-                child: Center(
-                  child: SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Image.asset('assets/images/scan_image.jpg'),
-                          const Text(
-                            'LOGIN',
-                            style: TextStyle(
-                                fontSize: 35,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
-                          ),
-                          TextFormField(
-                            controller: emailController,
-                            keyboardType: TextInputType.emailAddress,
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'please enter your username';
-                              }
-                              return null;
+            key: formKey,
+            child: Center(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Image.asset('assets/images/scan_image.jpg'),
+                      const Text(
+                        'LOGIN',
+                        style: TextStyle(
+                            fontSize: 35,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black),
+                      ),
+                      TextFormField(
+                        controller: emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'please enter your username';
+                          }
+                          return null;
+                        },
+                        decoration: const InputDecoration(
+                          prefixIcon: Icon(IconBroken.Profile),
+                          border: OutlineInputBorder(),
+                          labelText: 'Enter Your username',
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      TextFormField(
+                        controller: passwordController,
+                        keyboardType: TextInputType.visiblePassword,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'please enter your password';
+                          }
+                          return null;
+                        },
+                        obscureText: LoginCubit.get(context).isPassword,
+                        decoration: InputDecoration(
+                          prefixIcon: const Icon(IconBroken.Lock),
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              LoginCubit.get(context)
+                                  .changePasswordVisibility(context);
                             },
-                            decoration: const InputDecoration(
-                              prefixIcon: Icon(Icons.email_outlined),
-                              border: OutlineInputBorder(),
-                              labelText: 'Enter Your username',
+                            icon: Icon(
+                              LoginCubit.get(context).suffix,
                             ),
                           ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          TextFormField(
-                            controller: passwordController,
-                            keyboardType: TextInputType.visiblePassword,
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'please enter your password';
-                              }
-                              return null;
-                            },
-                            obscureText: LoginCubit
-                                .get(context)
-                                .isPassword,
-                            decoration: InputDecoration(
-                              prefixIcon: const Icon(Icons.lock_outline),
-                              suffixIcon: IconButton(
-                                onPressed: () {
-                                  LoginCubit.get(context)
-                                      .changePasswordVisibility(context);
-                                },
-                                icon: Icon(
-                                  LoginCubit
-                                      .get(context)
-                                      .suffix,
-                                ),
+                          border: const OutlineInputBorder(),
+                          labelText: 'Enter Your Password ',
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      ConditionalBuilder(
+                        condition: state is! AppLoginLoadingState,
+                        builder: (context) => Container(
+                            height: 50,
+                            color: Colors.grey[300],
+                            child: OutlinedButton(
+                              onPressed: () {
+                                if (formKey.currentState!.validate()) {
+                                  LoginCubit.get(context).userLogin(
+                                    context,
+                                    username: emailController.text,
+                                    password: passwordController.text,
+                                  );
+                                }
+                              },
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: const [
+                                  Expanded(
+                                    child: Text(
+                                      'LOGIN',
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  Icon(
+                                    IconBroken.Login,
+                                    size: 40,
+                                  )
+                                ],
                               ),
-                              border: const OutlineInputBorder(),
-                              labelText: 'Enter Your Password ',
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          ConditionalBuilder(
-                            condition: state is! AppLoginLoadingState,
-                            builder: (context) =>
-                                Container(
-                                    height: 50,
-                                    color: Colors.grey[300],
-                                    child: OutlinedButton(
-                                      onPressed: () {
-                                        if (formKey.currentState!.validate()) {
-                                          LoginCubit.get(context).userLogin(context,
-                                            username: emailController.text,
-                                            password: passwordController.text,
-                                          );
-
-                                        }
-
-
-                                      },
-
-                                      child: Row(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: const [
-                                          Expanded(
-                                            child: Text(
-                                              'LOGIN',
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                          Icon(
-                                            IconBroken.Login,
-                                            size: 40,
-                                          )
-                                        ],
-                                      ),
-                                    )),
-                            fallback: (context) =>
+                            )),
+                        fallback: (context) =>
                             const Center(child: CircularProgressIndicator()),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text('Don\'t have an account?'),
+                          const SizedBox(
+                            width: 0,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text('Don\'t have an account?'),
-                              const SizedBox(
-                                width: 0,
-                              ),
-                              FadeAnimation(1.1,
-                                child: TextButton(
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => RegisterScreen()),
-                                      );
-                                    },
-                                    child: const Text('REGISTER')),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 20,
-                            child: LoginCubit
-                                .get(context)
-                                .errorWidget,
-                          ),
+                          TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => RegisterScreen()),
+                                );
+                              },
+                              child: const Text('REGISTER')),
                         ],
                       ),
-                    ),
+                      SizedBox(
+                        height: 20,
+                        child: LoginCubit.get(context).errorWidget,
+                      ),
+                    ],
                   ),
-                ),)
-          );
+                ),
+              ),
+            ),
+          ));
         },
       ),
     );

@@ -10,14 +10,7 @@ import '../../style/icon_broken.dart';
 import '../home/home_screen.dart';
 import 'cubit/cubit.dart';
 import 'cubit/state.dart';
-// import 'package:untitled1/animation/fade_animation.dart';
-// import 'package:untitled1/components/components.dart';
-// import 'package:untitled1/components/constance.dart';
-// import 'package:untitled1/modules/home/home_screen.dart';
-// import 'package:untitled1/shared/remote/cache_helper.dart';
-// import 'package:untitled1/style/icon_broken.dart';
-// import 'cubit/cubit.dart';
-// import 'cubit/state.dart';
+
 
 
 class RegisterScreen extends StatelessWidget
@@ -109,7 +102,7 @@ class RegisterScreen extends StatelessWidget
                           },
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
-                            prefixIcon: Icon(Icons.email_outlined),
+                            prefixIcon: Icon(IconBroken.Message),
                             labelText: 'Enter Your Email',
                           ),
                         ),
@@ -161,24 +154,20 @@ class RegisterScreen extends StatelessWidget
                                         );
                                       }
                                     },
-                                    child: FadeAnimation(1.1,
-                                      child: Row(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: const [
-                                          FadeAnimation(1.1,
-                                            child: Expanded(
-                                              child: Text(
-                                                'REGISTER',
-                                                style: TextStyle(color: Colors.black,
-                                                    fontSize: 20,
-                                                    fontWeight: FontWeight.bold
-                                                ),
-                                              ),
+                                    child: Row(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: const [
+                                        Expanded(
+                                          child: Text(
+                                            'REGISTER',
+                                            style: TextStyle(color: Colors.black,
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold
                                             ),
                                           ),
-                                          Icon(IconBroken.Login,size: 40,)
-                                        ],
-                                      ),
+                                        ),
+                                        Icon(IconBroken.Login,size: 40,)
+                                      ],
                                     ),
                                   ),
                                 )

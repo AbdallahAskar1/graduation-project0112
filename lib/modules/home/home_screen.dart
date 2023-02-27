@@ -5,7 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:my_scan_for_solution/modules/favourite/favourite.dart';
 import 'package:my_scan_for_solution/modules/home/recognision_api.dart';
+import 'package:my_scan_for_solution/modules/login/cubit/cubit.dart';
 
 import '../../animation/fade_animation.dart';
 import '../../components/components.dart';
@@ -16,16 +18,6 @@ import '../../style/icon_broken.dart';
 import '../../text/scan_text.dart';
 import '../change_password/change_password.dart';
 import '../profile/profile.dart';
-// import 'package:untitled1/animation/fade_animation.dart';
-// import 'package:untitled1/components/components.dart';
-// import 'package:untitled1/components/constance.dart';
-// import 'package:untitled1/cubit/cubit.dart';
-// import 'package:untitled1/cubit/states.dart';
-// import 'package:untitled1/modules/change_password/change_password.dart';
-// import 'package:untitled1/modules/home/recognition_api.dart';
-// import 'package:untitled1/modules/profile/profile.dart';
-// import 'package:untitled1/style/icon_broken.dart';
-// import 'package:untitled1/text/scan_text.dart';
 
 String? showenText ;
 class HomeScreen extends StatefulWidget {
@@ -74,11 +66,16 @@ class _HomeScreenState extends State<HomeScreen> {
             title: const Text(
               "Please Select Image",
             ),
-
+            leading: Builder(
+              builder: (context) {
+                return IconButton(
+                  icon: Icon(IconBroken.Home),
+                  onPressed: () => Scaffold.of(context).openDrawer(),
+                );
+              }
+            ),
           ),
-          drawer: FadeAnimation(
-              1,
-              child: NavigationDrawer()),
+          drawer: NavigationDrawer(),
           body: Center(
             child: SingleChildScrollView(
               physics: BouncingScrollPhysics(),
@@ -144,8 +141,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           padding: const EdgeInsets.only(top: 10),
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              primary: Colors.white,
-                              onPrimary: Colors.grey,
+                              backgroundColor: Colors.white,
+                              foregroundColor: Colors.grey,
                               shadowColor: Colors.grey[400],
                               elevation: 10,
                               shape: RoundedRectangleBorder(
@@ -223,8 +220,8 @@ class NavigationDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final name = 'MohMek';
-    final email = 'mkey.moh@gmail.com';
+    final name = 'Moh';
+    final email = 'moh@gmail.com';
     final userImage =  Image.asset(
       'assets/images/scan_image.jpg',
       width: 80,
@@ -269,41 +266,41 @@ class NavigationDrawer extends StatelessWidget {
                       children: [
 
                         ListTile(
-                          leading: Icon(Icons.home),
+                          leading: Icon(IconBroken.Home),
                           title: Text("Home"),
                           // hoverColor: Colors.grey,
                           onTap: () => navigateTo(context, HomeScreen()),
                         ),
                         ListTile(
-                          leading: Icon(Icons.person),
+                          leading: Icon(IconBroken.Profile),
                           title: const Text("Profile"),
                           // hoverColor: Colors.grey,
                           onTap: () => navigateTo(context, ProfileScreen()),
                         ),
                         ListTile(
-                          leading: Icon(Icons.favorite),
+                          leading: Icon(IconBroken.Star),
                           title: Text("Favorite"),
-                          onTap: () => null,
+                          onTap: () => navigateTo(context, FavouuritePage()),
                         ),
                         ListTile(
-                          leading: Icon(Icons.settings),
+                          leading: Icon(IconBroken.Setting),
                           title: Text("Settings"),
                           onTap: () => null,
                         ),
                         ListTile(
-                          leading: Icon(Icons.lock),
+                          leading: Icon(IconBroken.Lock),
                           title: Text("Change Password"),
                           onTap: () => navigateTo(context, ChangePassword()),
                         ),
                         ListTile(
-                          leading: Icon(Icons.share),
+                          leading: Icon(IconBroken.Search),
                           title: Text("Share"),
                           onTap: () => null,
                         ),
                         SizedBox(height: 20,),
                         Divider(color: Colors.grey,),
                         ListTile(
-                          leading: Icon(Icons.logout),
+                          leading: Icon(IconBroken.Logout),
                           title: Text("Logout"),
                           onTap: () => signOut(context),
                         ),

@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_scan_for_solution/modules/login/cubit/state.dart';
+import 'package:my_scan_for_solution/style/icon_broken.dart';
 
 import '../../../models/login_model.dart';
 import '../../../shared/network/dio_helper.dart';
@@ -13,7 +14,7 @@ import '../../../shared/end_points.dart';
 // import 'package:untitled1/shared/network/dio_helper.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  IconData suffix = Icons.visibility_outlined;
+  IconData suffix = IconBroken.Password;
   bool isPassword = true;
 
   LoginCubit() : super(LoginInitialState());
@@ -23,7 +24,7 @@ class LoginCubit extends Cubit<LoginState> {
   void changePasswordVisibility(context) {
     isPassword = !isPassword;
     suffix =
-    isPassword ? Icons.visibility_off_outlined : Icons.visibility_outlined;
+    isPassword ? IconBroken.Hide : IconBroken.Show;
     emit(ShopChangePasswordVisibilityState());
   }
 

@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:my_scan_for_solution/text/regx_for_text.dart';
 
 import '../cubit/cubit.dart';
 import '../cubit/state.dart';
@@ -29,8 +30,7 @@ class _ScanTextState extends State<ScanText> {
 
   @override
   Widget build(BuildContext context) {
-
-    scannedContraller.text = widget.text ;
+    scannedContraller.text = widget.text;
 
     return BlocProvider(
       create: (context) => AppCubit(),
@@ -41,7 +41,7 @@ class _ScanTextState extends State<ScanText> {
           return Scaffold(
             appBar: AppBar(
               leading: IconButton(
-                onPressed: (){
+                onPressed: () {
                   Navigator.pop(context);
                 },
                 icon: Icon(
@@ -57,7 +57,7 @@ class _ScanTextState extends State<ScanText> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      child:   Column(
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
@@ -101,12 +101,13 @@ class _ScanTextState extends State<ScanText> {
                           ),
                         ),
                         child: MaterialButton(
-                          onPressed: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => AnswerRate(question: scannedContraller.text,),));
-
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(
+                              builder: (context) =>
+                                  AnswerRate(text: scannedContraller.text,),));
                           },
                           child: Text(
-                            'Show The Answer',style: TextStyle(
+                            'Show The Answer', style: TextStyle(
                               color: Colors.white,
                               fontSize: 20
                           ),
@@ -123,3 +124,4 @@ class _ScanTextState extends State<ScanText> {
     );
   }
 }
+//here we will take text to regular expression

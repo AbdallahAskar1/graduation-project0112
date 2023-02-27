@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../components/components.dart';
 import '../../style/icon_broken.dart';
-// import 'package:untitled1/components/components.dart';
-// import 'package:untitled1/style/icon_broken.dart';
 
 class ChangePassword extends StatelessWidget {
   var formKey = GlobalKey<FormState>();
@@ -17,12 +15,10 @@ class ChangePassword extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: (){
+          onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(
-              IconBroken.Arrow___Left_2
-          ),
+          icon: Icon(IconBroken.Arrow___Left_2),
         ),
       ),
       body: Padding(
@@ -37,8 +33,7 @@ class ChangePassword extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black
-                  ),
+                      color: Colors.black),
                 ),
                 SizedBox(
                   height: 30,
@@ -46,9 +41,12 @@ class ChangePassword extends StatelessWidget {
                 defaultFormField(
                     controller: currentPasswordController,
                     type: TextInputType.visiblePassword,
-                    validate: (String value){
-                      return value.length < 6 ? 'Must be at least 8 character' : null;
-                    }, prefix: Icons.lock,
+                    validate: (String value) {
+                      return value.length < 6
+                          ? 'Must be at least 8 character'
+                          : null;
+                    },
+                    prefix: IconBroken.Lock,
                     text: 'Current Password'),
                 SizedBox(
                   height: 20,
@@ -56,9 +54,12 @@ class ChangePassword extends StatelessWidget {
                 defaultFormField(
                     controller: newPasswordController,
                     type: TextInputType.visiblePassword,
-                    validate: (String value){
-                      return value.length < 8 ? 'Must be at least 8 character' : null;
-                    }, prefix: Icons.lock,
+                    validate: (String value) {
+                      return value.length < 8
+                          ? 'Must be at least 8 character'
+                          : null;
+                    },
+                    prefix: IconBroken.Lock,
                     text: 'New Password'),
                 SizedBox(
                   height: 20,
@@ -66,14 +67,16 @@ class ChangePassword extends StatelessWidget {
                 defaultFormField(
                     controller: confirmPasswordController,
                     type: TextInputType.visiblePassword,
-                    validate: (String value){
-                      return value.length < 8 ? 'Must be at least 8 character' : null;
-                    }, prefix: Icons.lock,
+                    validate: (String value) {
+                      return value.length < 8
+                          ? 'Must be at least 8 character'
+                          : null;
+                    },
+                    prefix: IconBroken.Lock,
                     text: 'Confirm Password'),
                 SizedBox(
                   height: 30,
                 ),
-
                 Container(
                   height: 50,
                   width: double.infinity,
@@ -82,19 +85,14 @@ class ChangePassword extends StatelessWidget {
                       borderRadius: BorderRadius.only(
                         topRight: Radius.circular(10),
                         bottomLeft: Radius.circular(10),
-                      )
-                  ),
+                      )),
                   child: MaterialButton(
                     child: Text(
-                      'Change Password', style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20
+                      'Change Password',
+                      style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
-                    ),
-                    onPressed: (){
-                      if(formKey.currentState!.validate()){
-
-                      }
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) {}
                     },
                   ),
                 ),
@@ -103,7 +101,6 @@ class ChangePassword extends StatelessWidget {
           ),
         ),
       ),
-
     );
   }
 }
