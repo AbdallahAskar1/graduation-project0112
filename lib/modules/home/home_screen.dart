@@ -7,9 +7,6 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:my_scan_for_solution/modules/favourite/favourite.dart';
 import 'package:my_scan_for_solution/modules/home/recognision_api.dart';
-import 'package:my_scan_for_solution/modules/login/cubit/cubit.dart';
-
-import '../../animation/fade_animation.dart';
 import '../../components/components.dart';
 import '../../components/constants.dart';
 import '../../cubit/cubit.dart';
@@ -19,7 +16,8 @@ import '../../text/scan_text.dart';
 import '../change_password/change_password.dart';
 import '../profile/profile.dart';
 
-String? showenText ;
+String? showenText;
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -28,10 +26,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  File? _image;
 
-  File? _image ;
-
-  Future _PickImage(ImageSource source) async{
+  Future _PickImage(ImageSource source) async {
     try {
       final image = await ImagePicker().pickImage(source: source);
       if (image == null) return;
@@ -40,22 +37,21 @@ class _HomeScreenState extends State<HomeScreen> {
       setState(() {
         _image = img;
       });
-    } on PlatformException catch(e){
+    } on PlatformException catch (e) {
       print(e);
       Navigator.of(context).pop();
     }
   }
 
-  Future<File?> _cropImage ({required File imageFile}) async{
+  Future<File?> _cropImage({required File imageFile}) async {
     CroppedFile? croppedImage =
-    await ImageCropper().cropImage(sourcePath: imageFile.path);
-    if(croppedImage == null) return null;
+        await ImageCropper().cropImage(sourcePath: imageFile.path);
+    if (croppedImage == null) return null;
     return File(croppedImage.path);
   }
 
   @override
   Widget build(BuildContext context) {
-
     return BlocConsumer<AppCubit, AppStates>(
       listener: (context, state) {},
       builder: (context, state) {
@@ -66,34 +62,33 @@ class _HomeScreenState extends State<HomeScreen> {
             title: const Text(
               "Please Select Image",
             ),
-            leading: Builder(
-              builder: (context) {
-                return IconButton(
-                  icon: Icon(IconBroken.Home),
-                  onPressed: () => Scaffold.of(context).openDrawer(),
-                );
-              }
-            ),
+            leading: Builder(builder: (context) {
+              return IconButton(
+                icon: const Icon(IconBroken.Home),
+                onPressed: () => Scaffold.of(context).openDrawer(),
+              );
+            }),
           ),
-          drawer: NavigationDrawer(),
+          drawer: const NavigationDrawer(),
           body: Center(
             child: SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               child: Container(
-                margin: EdgeInsets.all(20.0),
+                margin: const EdgeInsets.all(20.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     // if there image show it otherwise show below container
-                    if(_image == null) Container(
-                      width: 600,
-                      height: 400,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.grey[300]!,
+                    if (_image == null)
+                      Container(
+                        width: 600,
+                        height: 400,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.grey[300]!,
+                        ),
                       ),
-                    ),
-                    if(_image !=null) Image.file(_image!),
+                    if (_image != null) Image.file(_image!),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -109,20 +104,19 @@ class _HomeScreenState extends State<HomeScreen> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8.0)),
                             ),
-                            onPressed: (){
+                            onPressed: () {
                               _PickImage(ImageSource.gallery);
-                            },  // on pressed open gallery to select image and show it
-                            child:Container(
+                            }, // on pressed open gallery to select image and show it
+                            child: Container(
                               margin: const EdgeInsets.symmetric(
                                   vertical: 5, horizontal: 5),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     IconBroken.Image,
                                     size: 30,
                                   ),
-
                                   Text(
                                     "Gallery",
                                     style: TextStyle(
@@ -133,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 20.0,
                         ),
                         Container(
@@ -148,16 +142,16 @@ class _HomeScreenState extends State<HomeScreen> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8.0)),
                             ),
-                            onPressed: (){
+                            onPressed: () {
                               _PickImage(ImageSource.camera);
-                            },  // on pressed open camera to select image and show it
-                            child:Container(
+                            }, // on pressed open camera to select image and show it
+                            child: Container(
                               margin: const EdgeInsets.symmetric(
                                   vertical: 5, horizontal: 5),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     IconBroken.Camera,
                                     size: 30,
                                   ),
@@ -173,13 +167,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20.0,
                     ),
                     Container(
                       width: double.infinity,
                       height: 60,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.blue,
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(12),
@@ -187,21 +181,21 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       child: OutlinedButton(
-                        onPressed: () async{
-                          final recognizedText = await RecognitionApi.recognizeText(
-                              InputImage.fromFile(File(_image!.path))
-                          );
+                        onPressed: () async {
+                          final recognizedText =
+                              await RecognitionApi.recognizeText(
+                                  InputImage.fromFile(File(_image!.path)));
                           setState(() {
-                            showenText = recognizedText ;
+                            showenText = recognizedText;
                           });
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => ScanText(text: showenText!)));
-
-                        },  // route to scanned text page
-                        child:  Text(
-                          'ScanText',style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20
-                        ),
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => ScanText(text: showenText!)));
+                        }, // route to scanned text page
+                        child:const Text(
+                          'ScanText',
+                          style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
                       ),
                     ),
@@ -215,14 +209,15 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
 class NavigationDrawer extends StatelessWidget {
   const NavigationDrawer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final name = 'Moh';
-    final email = 'moh@gmail.com';
-    final userImage =  Image.asset(
+    const name = 'Moh';
+    const email = 'moh@gmail.com';
+    final userImage = Image.asset(
       'assets/images/scan_image.jpg',
       width: 80,
       height: 80,
@@ -264,7 +259,6 @@ class NavigationDrawer extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: Column(
                       children: [
-
                         ListTile(
                           leading: Icon(IconBroken.Home),
                           title: Text("Home"),
@@ -297,8 +291,12 @@ class NavigationDrawer extends StatelessWidget {
                           title: Text("Share"),
                           onTap: () => null,
                         ),
-                        SizedBox(height: 20,),
-                        Divider(color: Colors.grey,),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Divider(
+                          color: Colors.grey,
+                        ),
                         ListTile(
                           leading: Icon(IconBroken.Logout),
                           title: Text("Logout"),
@@ -315,10 +313,9 @@ class NavigationDrawer extends StatelessWidget {
       ),
     );
   }
-
 }
-Widget EditImage({name, image}){
 
+Widget EditImage({name, image}) {
   return Scaffold(
     appBar: AppBar(
       title: Text(name),
@@ -326,7 +323,12 @@ Widget EditImage({name, image}){
     ),
     body: Column(
       children: [
-        Image.asset(image, width: double.infinity, height: double.infinity, fit: BoxFit.cover,),
+        Image.asset(
+          image,
+          width: double.infinity,
+          height: double.infinity,
+          fit: BoxFit.cover,
+        ),
       ],
     ),
   );

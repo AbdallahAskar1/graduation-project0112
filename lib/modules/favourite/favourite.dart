@@ -110,7 +110,7 @@ class _FavouuritePageState extends State<FavouuritePage> {
                                       builder: (context) => AnswerRate(
                                           text: item["title"] + item["content"]),
                                     )),
-                                child: Text(
+                                child:const Text(
                                   'Reanswer',
                                   style: TextStyle(
                                       color: Colors.black,
