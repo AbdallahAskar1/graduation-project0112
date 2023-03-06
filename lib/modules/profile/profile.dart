@@ -44,7 +44,7 @@ class ProfileScreen extends StatelessWidget {
                     controller: nameController,
                     keyboardType: TextInputType.name,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.person),
+                      prefixIcon: Icon(IconBroken.Profile),
                       labelText: 'Name',
                       border: OutlineInputBorder(),
                     ),
@@ -61,7 +61,7 @@ class ProfileScreen extends StatelessWidget {
                     controller: emailController,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.email_outlined),
+                        prefixIcon: Icon(IconBroken.Message),
                         labelText: 'Email',
                         border: OutlineInputBorder()
                     ),
@@ -78,7 +78,7 @@ class ProfileScreen extends StatelessWidget {
                     controller: phoneController,
                     keyboardType: TextInputType.phone,
                     decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.phone),
+                        prefixIcon: Icon(IconBroken.Call),
                         labelText: 'Phone',
                         border: OutlineInputBorder()
                     ),

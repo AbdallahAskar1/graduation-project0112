@@ -6,6 +6,7 @@ import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:my_scan_for_solution/modules/favourite/favourite.dart';
+import 'package:my_scan_for_solution/modules/home/pdf_viewer.dart';
 import 'package:my_scan_for_solution/modules/home/recognision_api.dart';
 import '../../components/components.dart';
 import '../../components/constants.dart';
@@ -27,7 +28,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   File? _image;
-
+  File? pfdFile;
   Future _PickImage(ImageSource source) async {
     try {
       final image = await ImagePicker().pickImage(source: source);
@@ -60,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
           appBar: AppBar(
             titleSpacing: 5,
             title: const Text(
-              "Please Select Image",
+              "Please Select Question",
             ),
             leading: Builder(builder: (context) {
               return IconButton(
@@ -92,6 +93,43 @@ class _HomeScreenState extends State<HomeScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                          //file picker
+                        // Container(
+                        //   margin: const EdgeInsets.symmetric(horizontal: 5),
+                        //   padding: const EdgeInsets.only(top: 10),
+                        //   child: ElevatedButton(
+                        //     style: ElevatedButton.styleFrom(
+                        //       backgroundColor: Colors.white,
+                        //       foregroundColor: Colors.grey,
+                        //       shadowColor: Colors.grey[400],
+                        //       elevation: 10,
+                        //       shape: RoundedRectangleBorder(
+                        //           borderRadius: BorderRadius.circular(8.0)),
+                        //     ),
+                        //     onPressed: () {
+                        //       Navigator.of(context).push(MaterialPageRoute(builder: (_) =>PdfViewer()));
+                        //     }, // on pressed open pdf page to select file .pdf
+                        //     child: Container(
+                        //       margin: const EdgeInsets.symmetric(
+                        //           vertical: 5, horizontal: 5),
+                        //       child: Column(
+                        //         mainAxisSize: MainAxisSize.min,
+                        //         children: [
+                        //           const Icon(
+                        //             IconBroken.Folder,
+                        //             size: 30,
+                        //           ),
+                        //           Text(
+                        //             "File",
+                        //             style: TextStyle(
+                        //                 fontSize: 13, color: Colors.grey[600]),
+                        //           )
+                        //         ],
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
+                        //gallary picker
                         Container(
                           margin: const EdgeInsets.symmetric(horizontal: 5),
                           padding: const EdgeInsets.only(top: 10),
@@ -130,6 +168,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         const SizedBox(
                           width: 20.0,
                         ),
+                        // camera picker
                         Container(
                           margin: const EdgeInsets.symmetric(horizontal: 5),
                           padding: const EdgeInsets.only(top: 10),
@@ -165,6 +204,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                         ),
+
                       ],
                     ),
                     const SizedBox(
@@ -188,10 +228,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           setState(() {
                             showenText = recognizedText;
                           });
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (_) => ScanText(text: showenText!)));
+                          navigateTo(context, ScanText(text: showenText!));
                         }, // route to scanned text page
                         child:const Text(
                           'ScanText',

@@ -17,9 +17,10 @@ void main() async{
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
   await CacheHelper.init();
-  token = CacheHelper.getData(key: 'token');
+   Widget widget =SplashPage();
+ /* token = CacheHelper.getData(key: 'token');
   print(token);
-  Widget widget;
+ 
   if(SplashPage != null)
   {
     if(token != null) widget = HomeScreen();
@@ -27,7 +28,7 @@ void main() async{
   } else
   {
     widget = SplashPage();
-  }
+  }*/
   runApp( MyApp(startWidget: widget,));
 }
 class MyApp extends StatelessWidget {

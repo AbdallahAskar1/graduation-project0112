@@ -1,9 +1,9 @@
 class QModel {
-  String message;
-  bool status;
-  String id;
+  late String message;
+  late bool status;
+  late String id;
 
-  QModel({this.message, this.status, this.id});
+  QModel({required this.message,required this.status,required this.id});
 
   QModel.fromJson(Map<String, dynamic> json) {
     message = json['message'];

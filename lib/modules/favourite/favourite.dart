@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:my_scan_for_solution/components/components.dart';
 
 import '../../style/icon_broken.dart';
 import '../answer/answer.dart';
@@ -35,7 +36,14 @@ class _FavouuritePageState extends State<FavouuritePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Expansion Tile')),
+        appBar: AppBar(
+          title: const Text('History'),
+          leading: IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: const Icon(IconBroken.Arrow___Left)),
+        ),
         body: ListView.builder(
             itemCount: _items.length,
             itemBuilder: (_, index) {
@@ -78,7 +86,7 @@ class _FavouuritePageState extends State<FavouuritePage> {
                 ),
                 child: Card(
                   key: PageStorageKey(item['id']),
-                  color: Colors.lightBlueAccent,
+                  color: Colors.white,
                   elevation: 4,
                   child: ExpansionTile(
                       iconColor: Colors.white,
@@ -88,38 +96,37 @@ class _FavouuritePageState extends State<FavouuritePage> {
                       expandedCrossAxisAlignment: CrossAxisAlignment.end,
                       title: Text(
                         item['title'],
-                        style: const TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.black),
                       ),
                       children: [
                         Text(item['content'],
-                            style: const TextStyle(color: Colors.white)),
+                            style: const TextStyle(color: Colors.black)),
                         // This button is used to show this question
                         Padding(
                           padding: const EdgeInsets.only(top: 25),
                           child: Container(
                             decoration: const BoxDecoration(
-                              color: Colors.tealAccent,
+                              color: Colors.blue,
                               shape: BoxShape.rectangle,
-                              borderRadius: BorderRadius.all(Radius.circular(40)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(40)),
                             ),
-
                             child: MaterialButton(
-                                onPressed: () => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => AnswerRate(
-                                          text: item["title"] + item["content"]),
-                                    )),
-                                child:const Text(
+                                onPressed: () => navigateTo(
+                                      context,
+                                      AnswerRate(
+                                          text:
+                                              item["title"] + item["content"]),
+                                    ),
+                                child: const Text(
                                   'Reanswer',
                                   style: TextStyle(
                                       color: Colors.black,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 13
-                                  ),
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 13),
                                 )),
                           ),
-                        )
+                        ),
                         // IconButton(
                         //     onPressed: () => _removeItem(index),
                         //     icon: const Icon(

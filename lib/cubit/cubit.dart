@@ -1,15 +1,12 @@
-// import 'dart:io';
-//
-// import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:image_cropper/image_cropper.dart';
-// import 'package:image_picker/image_picker.dart';
-// import 'package:untitled1/cubit/states.dart';
-// import 'package:untitled1/shared/end_points.dart';
-// import 'package:untitled1/shared/network/dio_helper.dart';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_scan_for_solution/cubit/state.dart';
+
+import '../components/constants.dart';
+import '../models/question_model.dart';
+import '../shared/end_points.dart';
+import '../shared/network/dio_helper.dart';
 
 class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(AppInitialState());
@@ -21,10 +18,25 @@ class AppCubit extends Cubit<AppStates> {
   void changeRate() {
     emit(AppSuccessChangeRateState());
   }
-
-
-
-
+  QModel? qModel;
+  void question({
+    required String text,
+  }){
+    emit(LoadingQuestionStates());
+    DioHelper.postData(
+        url: QUESTION,
+        data: {
+          'message' : text,
+        },
+        token: token).then((value) {
+      qModel = QModel.fromJson(value.data);
+      print('dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd');
+      emit(SuccessQuestionStates());
+    }).catchError((error){
+      emit(ErrorQuestionStates());
+      print(error.toString());
+    });
+  }
 // bool textScanning = false;
 //
 // XFile? imageFile;

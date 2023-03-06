@@ -20,3 +20,8 @@ class CrppedImageState extends AppStates{
 
   CrppedImageState(File? imageFile);
 }
+class LoadingQuestionStates extends AppStates{}
+
+class SuccessQuestionStates extends AppStates{}
+
+class ErrorQuestionStates extends AppStates{}
