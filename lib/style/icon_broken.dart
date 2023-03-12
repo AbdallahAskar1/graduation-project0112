@@ -129,4 +129,62 @@ class IconBroken {
   static const IconData Volume_Up = IconData(0xe961, fontFamily: _fontFamily);
   static const IconData Wallet = IconData(0xe962, fontFamily: _fontFamily);
   static const IconData Work = IconData(0xe963, fontFamily: _fontFamily);
+  static const IconData sentimentVeryDissatisfied = IconData(0xe57c,fontFamily:_fontFamily);
+   static const IconData sentimentDissatisfied = IconData(0xe811,fontFamily:_fontFamily);
+    static const IconData sentimentSatisfied = IconData(0xe813,fontFamily:_fontFamily);
+     static const IconData sentimentVerySatisfied = IconData(0xe815,fontFamily:_fontFamily);
+     static const IconData emojiEmotions = IconData(0xea22,fontFamily:_fontFamily);
+     static const IconData mood = IconData(0xe7f2,fontFamily:_fontFamily);
+     static const IconData sentimentNeutral = IconData(0xe812,fontFamily:_fontFamily);
 }
+
+/*
+material icon named "emoji emotions" (outlined).
+IconData(0xf019, fontFamily: 'MaterialIcons')
+
+material icon named "emoji emotions" (round).
+IconData(0xf706, fontFamily: 'MaterialIcons')
+
+material icon named "emoji emotions" (sharp).
+IconData(0xe927, fontFamily: 'MaterialIcons')
+
+ material icon named "mood".
+IconData(0xe3fe, fontFamily: 'MaterialIcons')
+
+ material icon named "mood bad".
+IconData(0xe3ff, fontFamily: 'MaterialIcons')
+
+material icon named "mood bad" (outlined).
+IconData(0xf1e4, fontFamily: 'MaterialIcons')
+
+material icon named "mood bad" (round).
+IconData(0xf8d6, fontFamily: 'MaterialIcons')
+
+material icon named "mood bad" (sharp).
+IconData(0xeaf7, fontFamily: 'MaterialIcons')
+
+material icon named "mood" (outlined).
+IconData(0xf1e5, fontFamily: 'MaterialIcons')
+
+material icon named "sentiment dissatisfied".
+IconData(0xe578, fontFamily: 'MaterialIcons')
+
+material icon named "sentiment dissatisfied" (outlined).
+IconData(0xf35b, fontFamily: 'MaterialIcons')
+
+
+
+ material icon named "sentiment neutral".
+IconData(0xe579, fontFamily: 'MaterialIcons')
+
+material icon named "sentiment satisfied".
+IconData(0xe57a, fontFamily: 'MaterialIcons')
+
+ material icon named "sentiment satisfied alt".
+IconData(0xe57b, fontFamily: 'MaterialIcons')
+
+material icon named "sentiment very dissatisfied".
+IconData(0xe57c, fontFamily: 'MaterialIcons')
+
+
+ */

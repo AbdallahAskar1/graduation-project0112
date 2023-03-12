@@ -93,42 +93,42 @@ class _HomeScreenState extends State<HomeScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                          //file picker
-                        // Container(
-                        //   margin: const EdgeInsets.symmetric(horizontal: 5),
-                        //   padding: const EdgeInsets.only(top: 10),
-                        //   child: ElevatedButton(
-                        //     style: ElevatedButton.styleFrom(
-                        //       backgroundColor: Colors.white,
-                        //       foregroundColor: Colors.grey,
-                        //       shadowColor: Colors.grey[400],
-                        //       elevation: 10,
-                        //       shape: RoundedRectangleBorder(
-                        //           borderRadius: BorderRadius.circular(8.0)),
-                        //     ),
-                        //     onPressed: () {
-                        //       Navigator.of(context).push(MaterialPageRoute(builder: (_) =>PdfViewer()));
-                        //     }, // on pressed open pdf page to select file .pdf
-                        //     child: Container(
-                        //       margin: const EdgeInsets.symmetric(
-                        //           vertical: 5, horizontal: 5),
-                        //       child: Column(
-                        //         mainAxisSize: MainAxisSize.min,
-                        //         children: [
-                        //           const Icon(
-                        //             IconBroken.Folder,
-                        //             size: 30,
-                        //           ),
-                        //           Text(
-                        //             "File",
-                        //             style: TextStyle(
-                        //                 fontSize: 13, color: Colors.grey[600]),
-                        //           )
-                        //         ],
-                        //       ),
-                        //     ),
-                        //   ),
-                        // ),
+                        //file picker
+                         Container(
+                           margin: const EdgeInsets.symmetric(horizontal: 5),
+                           padding: const EdgeInsets.only(top: 10),
+                           child: ElevatedButton(
+                             style: ElevatedButton.styleFrom(
+                               backgroundColor: Colors.white,
+                               foregroundColor: Colors.grey,
+                               shadowColor: Colors.grey[400],
+                               elevation: 10,
+                               shape: RoundedRectangleBorder(
+                                   borderRadius: BorderRadius.circular(8.0)),
+                             ),
+                             onPressed: () {
+                               Navigator.of(context).push(MaterialPageRoute(builder: (_) =>const PdfViewer()));
+                             }, // on pressed open pdf page to select file .pdf
+                             child: Container(
+                               margin: const EdgeInsets.symmetric(
+                                   vertical: 5, horizontal: 5),
+                               child: Column(
+                                 mainAxisSize: MainAxisSize.min,
+                                 children: [
+                                   const Icon(
+                                     IconBroken.Folder,
+                                     size: 30,
+                                   ),
+                                   Text(
+                                     "File",
+                                     style: TextStyle(
+                                         fontSize: 13, color: Colors.grey[600]),
+                                   )
+                                 ],
+                               ),
+                             ),
+                           ),
+                         ),
                         //gallary picker
                         Container(
                           margin: const EdgeInsets.symmetric(horizontal: 5),
@@ -165,9 +165,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                         ),
-                        const SizedBox(
-                          width: 20.0,
-                        ),
+                        //const SizedBox(
+                          //width: 20.0,
+                        //),
                         // camera picker
                         Container(
                           margin: const EdgeInsets.symmetric(horizontal: 5),
@@ -204,7 +204,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                         ),
-
                       ],
                     ),
                     const SizedBox(
@@ -230,7 +229,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           });
                           navigateTo(context, ScanText(text: showenText!));
                         }, // route to scanned text page
-                        child:const Text(
+                        child: const Text(
                           'ScanText',
                           style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
@@ -270,8 +269,8 @@ class NavigationDrawer extends StatelessWidget {
                 shrinkWrap: true,
                 children: [
                   UserAccountsDrawerHeader(
-                    accountName: Text(name),
-                    accountEmail: Text(email),
+                    accountName: const Text(name),
+                    accountEmail: const Text(email),
                     currentAccountPicture: InkWell(
                       onTap: () => navigateTo(context, ProfileScreen()),
                       //EditImage(),
@@ -281,7 +280,7 @@ class NavigationDrawer extends StatelessWidget {
                         ),
                       ),
                     ),
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.lightBlueAccent,
                       // the color is until the image loaded
                       // image: DecorationImage(
@@ -293,50 +292,51 @@ class NavigationDrawer extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Column(
                       children: [
                         ListTile(
-                          leading: Icon(IconBroken.Home),
-                          title: Text("Home"),
+                          leading: const Icon(IconBroken.Home),
+                          title: const Text("Home"),
                           // hoverColor: Colors.grey,
-                          onTap: () => navigateTo(context, HomeScreen()),
+                          onTap: () => navigateTo(context, const HomeScreen()),
                         ),
                         ListTile(
-                          leading: Icon(IconBroken.Profile),
+                          leading: const Icon(IconBroken.Profile),
                           title: const Text("Profile"),
                           // hoverColor: Colors.grey,
                           onTap: () => navigateTo(context, ProfileScreen()),
                         ),
                         ListTile(
-                          leading: Icon(IconBroken.Star),
-                          title: Text("Favorite"),
-                          onTap: () => navigateTo(context, FavouuritePage()),
+                          leading: const Icon(IconBroken.Star),
+                          title: const Text("Favorite"),
+                          onTap: () =>
+                              navigateTo(context, const FavouuritePage()),
                         ),
                         ListTile(
-                          leading: Icon(IconBroken.Setting),
-                          title: Text("Settings"),
-                          onTap: () => null,
+                          leading: const Icon(IconBroken.Setting),
+                          title: const Text("Settings"),
+                          onTap: () {},
                         ),
                         ListTile(
-                          leading: Icon(IconBroken.Lock),
-                          title: Text("Change Password"),
+                          leading:const Icon(IconBroken.Lock),
+                          title:const Text("Change Password"),
                           onTap: () => navigateTo(context, ChangePassword()),
                         ),
                         ListTile(
-                          leading: Icon(IconBroken.Search),
-                          title: Text("Share"),
-                          onTap: () => null,
+                          leading:const Icon(IconBroken.Search),
+                          title:const Text("Share"),
+                          onTap: () {},
                         ),
-                        SizedBox(
+                       const SizedBox(
                           height: 20,
                         ),
-                        Divider(
+                       const Divider(
                           color: Colors.grey,
                         ),
                         ListTile(
-                          leading: Icon(IconBroken.Logout),
-                          title: Text("Logout"),
+                          leading:const Icon(IconBroken.Logout),
+                          title:const Text("Logout"),
                           onTap: () => signOut(context),
                         ),
                       ],
@@ -352,7 +352,7 @@ class NavigationDrawer extends StatelessWidget {
   }
 }
 
-Widget EditImage({name, image}) {
+Widget editImage({name, image}) {
   return Scaffold(
     appBar: AppBar(
       title: Text(name),

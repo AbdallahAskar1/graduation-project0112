@@ -34,31 +34,31 @@ class _RateScreenState extends State<RateScreen> {
               allowHalfRating: true,
               itemCount: 5,
               itemSize: 46,
-              itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+              itemPadding:const EdgeInsets.symmetric(horizontal: 4.0),
               itemBuilder: (context, index) {
                 switch (index) {
                   case 0:
-                    return Icon(
+                    return const Icon(
                       Icons.sentiment_very_dissatisfied,
                       color: Colors.red,
                     );
                   case 1:
-                    return Icon(
+                    return const Icon(
                       Icons.sentiment_dissatisfied,
                       color: Colors.redAccent,
                     );
                   case 2:
-                    return Icon(
+                    return const Icon(
                       Icons.sentiment_neutral,
                       color: Colors.amber,
                     );
                   case 3:
-                    return Icon(
+                    return const Icon(
                       Icons.sentiment_satisfied,
                       color: Colors.lightGreen,
                     );
                   case 4:
-                    return Icon(
+                    return const Icon(
                       Icons.sentiment_very_satisfied,
                       color: Colors.green,
                     );
@@ -67,11 +67,12 @@ class _RateScreenState extends State<RateScreen> {
               },
 
             ),
-            SizedBox(
+           const SizedBox(
               height: 30,
             ),
             Text(
-              'Rating:  $rating',style: TextStyle(
+              'Rating:  $rating',
+              style:const TextStyle(
                 fontSize: 40
             ),
             ),
@@ -80,10 +81,8 @@ class _RateScreenState extends State<RateScreen> {
                   showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
-                      title: Text(
+                      title:const Text(
                         'Rate This App',
-
-
                       ),
                       content: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -96,9 +95,10 @@ class _RateScreenState extends State<RateScreen> {
                                 height: 1
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
-                          ),RatingBar.builder(
+                          ),
+                          RatingBar.builder(
                             onRatingUpdate: (rating) {
                               setState(() {
                                 this.rating = rating;
@@ -112,40 +112,38 @@ class _RateScreenState extends State<RateScreen> {
                             allowHalfRating: true,
                             itemCount: 5,
                             itemSize: 30,
-                            itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                            itemPadding:const EdgeInsets.symmetric(horizontal: 4.0),
                             itemBuilder: (context, index) {
                               switch (index) {
                                 case 0:
-                                  return Icon(
+                                  return const Icon(
                                     Icons.sentiment_very_dissatisfied,
                                     color: Colors.red,
                                   );
                                 case 1:
-                                  return Icon(
+                                  return const Icon(
                                     Icons.sentiment_dissatisfied,
                                     color: Colors.redAccent,
                                   );
                                 case 2:
-                                  return Icon(
+                                  return const Icon(
                                     Icons.sentiment_neutral,
                                     color: Colors.amber,
                                   );
                                 case 3:
-                                  return Icon(
+                                  return const Icon(
                                     Icons.sentiment_satisfied,
                                     color: Colors.lightGreen,
                                   );
                                 case 4:
-                                  return Icon(
+                                  return const Icon(
                                     Icons.sentiment_very_satisfied,
                                     color: Colors.green,
                                   );
                               }
                               return Container();
                             },
-
                           ),
-
                         ],
                       ),
                       actions: [
@@ -153,7 +151,7 @@ class _RateScreenState extends State<RateScreen> {
                             onPressed: (){
                               Navigator.pop(context);
                             },
-                            child: Text(
+                            child:const Text(
                               'ok',
                               style: TextStyle(
                                   fontSize: 20
@@ -163,7 +161,7 @@ class _RateScreenState extends State<RateScreen> {
                     ),
                   );
                 },
-                child: Text(
+                child:const Text(
                   'Show Dialog',
                   style: TextStyle(
                       fontSize: 30,

@@ -74,35 +74,30 @@ class _ScanTextState extends State<ScanText> {
                     ),
                     const SizedBox(
                       height: 20,
-                    ),                        
-                           Container(
-                              width: double.infinity,
-                              height: 60,
-                              decoration: const BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(12),
-                                  bottomRight: Radius.circular(12),
-                                ),
-                              ),
-                              child: MaterialButton(
-                                onPressed: () {
-                                  cubit.question(text: scannedContraller.text);
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => AnswerRate(
-                                          text: scannedContraller.text,
-                                        ),
-                                      ));
-                                  scannedContraller.text;
-                                },
-                                child: const Text(
-                                  'Show The Answer',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 20),
-                                ),
-                              )),
+                    ),
+                    Container(
+                        width: double.infinity,
+                        height: 60,
+                        decoration: const BoxDecoration(
+                          color: Colors.blue,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(12),
+                            bottomRight: Radius.circular(12),
+                          ),
+                        ),
+                        child: MaterialButton(
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    AnswerRate(text: scannedContraller.text)));
+                            cubit.question(text: scannedContraller.text);
+                            scannedContraller.text;
+                          },
+                          child: const Text(
+                            'Show The Answer',
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          ),
+                        )),
                   ],
                 ),
               ),

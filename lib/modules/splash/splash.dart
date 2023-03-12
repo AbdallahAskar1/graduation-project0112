@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_scan_for_solution/animation/fade_animation.dart';
 import 'package:my_scan_for_solution/shared/remote/cash_helper.dart';
 import 'package:my_scan_for_solution/components/constants.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
@@ -6,7 +7,6 @@ import 'package:my_scan_for_solution/style/icon_broken.dart';
 import 'package:slide_to_act/slide_to_act.dart';
 import '../home/home_screen.dart';
 import '../login/login_screen.dart';
-// import 'package:untitled1/modules/Login/Login_Screen.dart';
 
 class SplashPage extends StatefulWidget {
   SplashPage({Key? key}) : super(key: key);
@@ -31,6 +31,17 @@ class _SplashPageState extends State<SplashPage> {
   */
   @override
   Widget build(BuildContext context) {
+    const colorizeColors = [
+      Color.fromARGB(255, 40, 73, 100),
+      Color.fromARGB(255, 32, 30, 95),
+      Color.fromARGB(255, 17, 33, 68),
+      Color.fromARGB(255, 16, 34, 63),
+    ];
+    const colorizeTextStyle = TextStyle(
+      fontSize: 26.0,
+      fontWeight: FontWeight.bold,
+    );
+
     token = CacheHelper.getData(key: 'token');
     token;
     Widget widget;
@@ -69,8 +80,10 @@ class _SplashPageState extends State<SplashPage> {
                               isRepeatingAnimation: false,
                               pause: const Duration(seconds: 3),
                               animatedTexts: [
-                                TypewriterAnimatedText('can',
-                                    speed: const Duration(seconds: 1)),
+                                TypewriterAnimatedText(
+                                  'can',
+                                  speed: const Duration(seconds: 1),
+                                ),
                               ]),
                         ),
                       ),
@@ -80,30 +93,61 @@ class _SplashPageState extends State<SplashPage> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 180, left: 20),
-            child: SlideAction(
-              alignment: Alignment.bottomCenter,
-              innerColor: Colors.white,
-              outerColor: Colors.blue,
-              elevation: 0,
-              text: 'Slide To Enter',
-              onSubmit: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (_) => widget));
-              },
-              sliderButtonIcon: Container(
-                width: 30,
-                height: 30,
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(200)),
-                child: Image.asset(
-                  'assets/images/s.jpg',
-                  width: 20,
-                  height: 20,
+          FadeAnimation(14,
+            child: SizedBox(
+              width: 150,
+              height: 150,
+              child: AnimatedTextKit(
+                animatedTexts: [
+                  ColorizeAnimatedText(
+                    'For Solution',
+                    textStyle: colorizeTextStyle,
+                    colors: colorizeColors,
+                  ),
+                ],
+                isRepeatingAnimation: false,
+              ),
+            ),
+          ),
+          
+
+          FadeAnimation(
+            16,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 30, left: 20),
+              child: SlideAction(
+                alignment: Alignment.bottomCenter,
+                innerColor: Colors.blue,
+                outerColor: Colors.white,
+                elevation: 0,
+                text: 'Slide To Enter',
+                onSubmit: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => widget));
+                },
+                sliderButtonIcon: Container(
+                  width: 30,
+                  height: 30,
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(200)),
+                  child: Image.asset(
+                    'assets/images/colorless_image.png',
+                    width: 20,
+                    height: 20,
+                  ),
+                ),
+                submittedIcon: const SizedBox(
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: Text(
+                    'WELCOME',
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
               ),
-              submittedIcon:const Icon(IconBroken.Unlock),
             ),
           ),
         ],
