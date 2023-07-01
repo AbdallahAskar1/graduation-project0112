@@ -6,7 +6,6 @@ class DioHelper {
   static init() {
     dio = Dio(BaseOptions(
       baseUrl: 'https://sfs-api.onrender.com/',
-      //https://scan-for-solution-api.herokuapp.com
       receiveDataWhenStatusError: true,
     ))
       ..interceptors.add(

@@ -309,7 +309,7 @@ class NavigationDrawer extends StatelessWidget {
                         ),
                         ListTile(
                           leading: const Icon(IconBroken.Star),
-                          title: const Text("Favorite"),
+                          title: const Text("History"),
                           onTap: () =>
                               navigateTo(context, const FavouuritePage()),
                         ),
@@ -494,7 +494,7 @@ Widget editImage({name, image}) {
 /*
  * profile
  * settings
- * home  //**//**//
+ * home   //**//**//
  * change password
  * about us
  * sign out  //**//**//

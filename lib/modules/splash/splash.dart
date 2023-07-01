@@ -3,7 +3,6 @@ import 'package:my_scan_for_solution/animation/fade_animation.dart';
 import 'package:my_scan_for_solution/shared/remote/cash_helper.dart';
 import 'package:my_scan_for_solution/components/constants.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:my_scan_for_solution/style/icon_broken.dart';
 import 'package:slide_to_act/slide_to_act.dart';
 import '../home/home_screen.dart';
 import '../login/login_screen.dart';
@@ -31,14 +30,16 @@ class _SplashPageState extends State<SplashPage> {
   */
   @override
   Widget build(BuildContext context) {
+    final double width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
     const colorizeColors = [
       Color.fromARGB(255, 40, 73, 100),
       Color.fromARGB(255, 32, 30, 95),
       Color.fromARGB(255, 17, 33, 68),
       Color.fromARGB(255, 16, 34, 63),
     ];
-    const colorizeTextStyle = TextStyle(
-      fontSize: 26.0,
+    TextStyle colorizeTextStyle = TextStyle(
+      fontSize: width * 0.08,
       fontWeight: FontWeight.bold,
     );
 
@@ -56,24 +57,24 @@ class _SplashPageState extends State<SplashPage> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 70, right: 30),
+            padding:  EdgeInsets.only( right: width * 0.08),
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Center(
                 child: SizedBox(
-                  height: 300,
+                  height: height * 0.5,  //300
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       SizedBox(
-                          height: 150,
-                          width: 150,
+                          height: height * 0.25,
+                          width: width * 0.4,
                           child: Image.asset('assets/images/s.jpg')),
                       SizedBox(
                         child: DefaultTextStyle(
-                          style: const TextStyle(
-                            fontSize: 40,
+                          style:  TextStyle(
+                            fontSize: width * 0.13, //40
                             color: Color.fromARGB(255, 40, 73, 100),
                           ),
                           child: AnimatedTextKit(
@@ -95,8 +96,8 @@ class _SplashPageState extends State<SplashPage> {
           ),
           FadeAnimation(14,
             child: SizedBox(
-              width: 150,
-              height: 150,
+              width: width * 0.5,
+              height: height * 0.23,
               child: AnimatedTextKit(
                 animatedTexts: [
                   ColorizeAnimatedText(
@@ -109,12 +110,13 @@ class _SplashPageState extends State<SplashPage> {
               ),
             ),
           ),
-          
+          SizedBox(height: height * 0.1,),
+
 
           FadeAnimation(
             16,
             child: Padding(
-              padding: const EdgeInsets.only(top: 30, left: 20),
+              padding:  EdgeInsets.only( left: width * 0.05),  //20
               child: SlideAction(
                 alignment: Alignment.bottomCenter,
                 innerColor: Colors.blue,
@@ -126,14 +128,14 @@ class _SplashPageState extends State<SplashPage> {
                       .push(MaterialPageRoute(builder: (_) => widget));
                 },
                 sliderButtonIcon: Container(
-                  width: 30,
-                  height: 30,
+                  width: width * 0.11,
+                  height: height * 0.06,
                   decoration:
                       BoxDecoration(borderRadius: BorderRadius.circular(200)),
                   child: Image.asset(
                     'assets/images/colorless_image.png',
-                    width: 20,
-                    height: 20,
+                    width: width * 0.25,
+                    height: height * 0.06,
                   ),
                 ),
                 submittedIcon: const SizedBox(

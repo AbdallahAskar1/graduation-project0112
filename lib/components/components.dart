@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
 Widget defaultTextButton({
   required Function function,
   required String text,
-}) => TextButton(
-    onPressed: (){
-      function();
-    },
-    child: Text(
-      text,
-    )
-);
-void navigateAndFinish(context, widget) =>   Navigator.pushAndRemoveUntil(
+}) =>
+    TextButton(
+        onPressed: () {
+          function();
+        },
+        child: Text(
+          text,
+        ));
+void navigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
     context,
     MaterialPageRoute(
       builder: (context) => widget,
     ),
-        (route) => false);
+    (route) => false);
 Widget defaultFormField({
   required TextEditingController controller,
   required TextInputType type,
@@ -29,37 +30,38 @@ Widget defaultFormField({
   IconData? suffix,
   required String text,
   Function? suffixPressed,
-}) => TextFormField(
-  controller: controller,
-  keyboardType: type,
-  onChanged: onChange != null ? onChange() : null,
-  onTap: onTap != null ? () => onTap() : null,
-  obscureText: isPassword,
-  onFieldSubmitted: onSubmit,
-  validator: (s){
-    return validate(s);
-  },
-  decoration: InputDecoration(
-    prefixIcon: Icon(prefix),
-    border: OutlineInputBorder(),
-    suffixIcon:  suffix != null ?
-    IconButton(
-        onPressed: (){
-          suffixPressed!();
-        },
-        icon: Icon(suffix)
-    ) : null,
-    labelText: text,
-
-  ),
-);
+}) =>
+    TextFormField(
+      controller: controller,
+      keyboardType: type,
+      onChanged: onChange != null ? onChange() : null,
+      onTap: onTap != null ? () => onTap() : null,
+      obscureText: isPassword,
+      onFieldSubmitted: onSubmit,
+      validator: (s) {
+        return validate(s);
+      },
+      decoration: InputDecoration(
+        prefixIcon: Icon(prefix),
+        border: OutlineInputBorder(),
+        suffixIcon: suffix != null
+            ? IconButton(
+                onPressed: () {
+                  suffixPressed!();
+                },
+                icon: Icon(suffix))
+            : null,
+        labelText: text,
+      ),
+    );
 void navigateTo(context, widget) => Navigator.push(
-  context,
-  MaterialPageRoute(
-    builder: (context) => widget,
-  ),
-);
-Widget gradientButton({required BuildContext context,Function? onPressed,Widget? title}){
+      context,
+      MaterialPageRoute(
+        builder: (context) => widget,
+      ),
+    );
+Widget gradientButton(
+    {required BuildContext context, Function? onPressed, Widget? title}) {
   return Container(
     clipBehavior: Clip.antiAlias,
     width: MediaQuery.of(context).size.width,
@@ -79,7 +81,7 @@ Widget gradientButton({required BuildContext context,Function? onPressed,Widget?
           end: Alignment.centerRight,
         )),
     child: MaterialButton(
-      onPressed: (){
+      onPressed: () {
         onPressed!();
       },
       child: title,
@@ -120,4 +122,21 @@ Color chooseToastColor(ToastState state) {
   }
 
   return color;
+}
+
+List aanswers = [];
+
+void textOrganization(String text) {
+  //String text = '1-how are you ? a-fine. b-good. c-thanks.';
+  List<String> splitted = text.split(RegExp(r'[?.]'));
+//   List<String> asplitted = text.split('.');
+  
+  aanswers = splitted;
+
+  print(splitted);
+//   print(asplitted);
+  print('${splitted[0]}?');
+  print('${splitted[1]}');
+  print('${splitted[2]}');
+  print('${splitted[3]}');
 }
