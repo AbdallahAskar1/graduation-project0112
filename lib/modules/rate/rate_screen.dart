@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-// import 'package:untitled1/cubit/cubit.dart';
-// import 'package:untitled1/cubit/states.dart';
 
 class RateScreen extends StatefulWidget {
   const RateScreen({Key? key}) : super(key: key);

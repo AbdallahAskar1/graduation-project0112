@@ -4,11 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_scan_for_solution/shared/network/dio_helper.dart';
 import 'package:my_scan_for_solution/shared/remote/cash_helper.dart';
-
-import 'components/constants.dart';
 import 'cubit/cubit.dart';
-import 'modules/home/home_screen.dart';
-import 'modules/login/login_screen.dart';
 import 'modules/splash/splash.dart';
 import 'observer.dart';
 
@@ -33,7 +29,7 @@ void main() async{
 }
 class MyApp extends StatelessWidget {
   final Widget startWidget;
-  MyApp({
+  const MyApp({
     required this.startWidget
   });
   // This widget is the root of your application.
