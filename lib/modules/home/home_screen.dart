@@ -52,8 +52,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    const name = 'Moh';
-    const email = 'moh@gmail.com';
+    const name = 'Mohamed0107047';
+    const email = 'mohamed@gmail.com';
     final userImage = Image.asset(
       'assets/images/scan_image.jpg',
       width: 80,
@@ -251,13 +251,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     decoration: const BoxDecoration(
                       color: Colors.lightBlueAccent,
-                      // the color is until the image loaded
-                      // image: DecorationImage(
-                      //   image: NetworkImage(
-                      //     "https://images2.alphacoders.com/115/115802.jpg",
-                      //   ),
-                      //   fit: BoxFit.cover,
-                      // )
                     ),
                   ),
                   Container(
@@ -281,11 +274,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           title: const Text("History"),
                           onTap: () =>
                               navigateTo(context, const FavouuritePage()),
-                        ),
-                        ListTile(
-                          leading: const Icon(IconBroken.Setting),
-                          title: const Text("Settings"),
-                          onTap: () {},
                         ),
                         ListTile(
                           leading: const Icon(IconBroken.Lock),
