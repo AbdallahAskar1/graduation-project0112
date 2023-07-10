@@ -12,12 +12,14 @@ Widget defaultTextButton({
         child: Text(
           text,
         ));
+
 void navigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
     context,
     MaterialPageRoute(
       builder: (context) => widget,
     ),
     (route) => false);
+
 Widget defaultFormField({
   required TextEditingController controller,
   required TextInputType type,
@@ -54,12 +56,14 @@ Widget defaultFormField({
         labelText: text,
       ),
     );
+
 void navigateTo(context, widget) => Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => widget,
       ),
     );
+
 Widget gradientButton(
     {required BuildContext context, Function? onPressed, Widget? title}) {
   return Container(
@@ -130,7 +134,7 @@ void textOrganization(String text) {
   //String text = '1-how are you ? a-fine. b-good. c-thanks.';
   List<String> splitted = text.split(RegExp(r'[?.]'));
 //   List<String> asplitted = text.split('.');
-  
+
   aanswers = splitted;
 
   print(splitted);
@@ -139,4 +143,26 @@ void textOrganization(String text) {
   print('${splitted[1]}');
   print('${splitted[2]}');
   print('${splitted[3]}');
+}
+
+Future<dynamic> showErrorDialog(
+    {context,
+    required String text,
+    double fontSize = 14,
+    MaterialColor textColor = Colors.red}) {
+  return showDialog(
+      context: context,
+      builder: (_) {
+        return AlertDialog(
+            title: SingleChildScrollView(
+                child: Column(children: [
+          Text(text,
+              maxLines: 5,
+              style: TextStyle(
+                color: textColor,
+                fontSize: fontSize,
+                fontWeight: FontWeight.w400,
+              ))
+        ])));
+      });
 }

@@ -40,7 +40,6 @@ dependencies:
   bloc: ^8.1.1
   flutter_bloc: ^8.1.1
   conditional_builder_null_safety: ^0.0.6
-  #  google_ml_kit: ^0.12.0
   image_picker: ^0.8.6+1
   easy_splash_screen: ^1.0.4
   flutter_rating_bar: ^4.0.1
@@ -63,13 +62,19 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  flutter_launcher_icons: ^0.13.1
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/colorless_image.png"
+  min_sdk_android: 21
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -80,7 +85,7 @@ flutter:
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
-#  uses-material-design: true
+  uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
   assets:

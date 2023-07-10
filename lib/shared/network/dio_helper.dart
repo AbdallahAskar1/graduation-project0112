@@ -8,12 +8,10 @@ class DioHelper {
       baseUrl: 'https://sfs-api.onrender.com/',
       receiveDataWhenStatusError: true,
     ))
-      ..interceptors.add(
-        LogInterceptor(
-          responseBody: true,
-          requestBody: true,
-        ),
-      );
+      ..interceptors.add(LogInterceptor(
+        responseBody: true,
+        requestBody: true,
+      ));
   }
 
   static Future<Response> getData({

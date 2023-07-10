@@ -25,3 +25,10 @@ class LoadingQuestionStates extends AppStates{}
 class SuccessQuestionStates extends AppStates{}
 
 class ErrorQuestionStates extends AppStates{}
+
+
+class LoadingAnswerStates extends AppStates{}
+
+class SuccessAnswerStates extends AppStates{}
+
+class ErrorAnswerStates extends AppStates{}

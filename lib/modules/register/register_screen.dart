@@ -13,17 +13,32 @@ import 'cubit/state.dart';
 
 
 
-class RegisterScreen extends StatelessWidget
+class RegisterScreen extends StatefulWidget
 {
+
+  RegisterScreen({super.key});
+
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
   var formKey = GlobalKey<FormState>();
+
   var nameController = TextEditingController();
+
   var emailController = TextEditingController();
+
   var passwordController = TextEditingController();
+
   var phoneController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context)
   {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return BlocProvider(
       create: (BuildContext context) => RegisterCubit(),
       child: BlocConsumer<RegisterCubit, RegisterStates>(
@@ -42,108 +57,114 @@ class RegisterScreen extends StatelessWidget
         builder: (context, state)
         {
           return Scaffold(
-            appBar: AppBar(
-              leading: IconButton(onPressed: (){
-                Navigator.pop(context);
-              },
-                  icon: Icon(
-                      IconBroken.Arrow___Left_2
-                  )),
-            ),
+            // appBar: AppBar(
+            //   leading: IconButton(onPressed: (){
+            //     Navigator.pop(context);
+            //   },
+            //       icon: Icon(
+            //           IconBroken.Arrow___Left_2
+            //       )),
+            // ),
             body: Center(
               child: SingleChildScrollView(
                 physics: BouncingScrollPhysics(),
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Form(
-                    key: formKey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Image.asset(
-                            'assets/images/scan_image.jpg'
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow:const [
+                            BoxShadow(
+                              color: Colors.grey,
+                              blurRadius: 20,
+                              offset: Offset(70, 45),
+                              spreadRadius: -70,
+                            ),
+                          ],
                         ),
-                        SizedBox(
-                          height: 20,
+                        padding: EdgeInsets.only(left: width*0.4),
+                        margin: EdgeInsets.zero,
+                        child: Image.asset(
+                            'assets/images/colorless_image.png', width: width*0.2,height: height*0.2,
                         ),
-                        Text(
-                          'REGISTER NOW',style: TextStyle(
-                            fontSize: 25
-                        ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        TextFormField(
-                          controller: nameController,
-                          keyboardType: TextInputType.name,
-                          validator: (value){
-                            if(value!.isEmpty){
-                              return 'please enter your name';
-                            }
-                          },
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            label: Text('User Name'),
-                            prefixIcon: Icon(IconBroken.User),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        TextFormField(
-                          controller: emailController,
-                          keyboardType: TextInputType.emailAddress,
-                          validator: (value){
-                            if(value!.isEmpty){
-                              return 'please enter your email';
-                            }
-                            return null;
-                          },
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            prefixIcon: Icon(IconBroken.Message),
-                            labelText: 'Enter Your Email',
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        TextFormField(
-                          controller: passwordController,
-                          keyboardType: TextInputType.visiblePassword,
-                          validator: (value){
-                            if(value!.isEmpty){
-                              return 'please enter your password';
-                            }
-                            return null;
-                          },
-
-                          obscureText: RegisterCubit.get(context).isPassword,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            prefixIcon: Icon(IconBroken.Lock),
-                            suffixIcon: IconButton(
-                              onPressed: (){
-                                RegisterCubit.get(context).changePasswordVisibility();
+                      ),
+                      Padding(
+                        padding:  EdgeInsets.symmetric(horizontal: width*0.05, vertical: height*0.06),                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 20,
+                            ),
+                            TextFormField(
+                              controller: nameController,
+                              keyboardType: TextInputType.name,
+                              validator: (value){
+                                if(value!.isEmpty){
+                                  return 'please enter your name';
+                                }
                               },
-                              icon: Icon(
-                                RegisterCubit.get(context).suffix,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                label: Text('User Name'),
+                                prefixIcon: Icon(IconBroken.User),
                               ),
                             ),
-                            labelText: 'Enter Your Password',
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 30.0,
-                        ),
-                        FadeAnimation(1.1,
-                          child: ConditionalBuilder(
-                            condition: !RegisterCubit.get(context).isRigestaring ,
-                            builder: (context) => Container(
-                                height: 50,
-                                color: Colors.grey[300],
-                                child: FadeAnimation(1.1,
+                            SizedBox(
+                              height: 10,
+                            ),
+                            TextFormField(
+                              controller: emailController,
+                              keyboardType: TextInputType.emailAddress,
+                              validator: (value){
+                                if(value!.isEmpty){
+                                  return 'please enter your email';
+                                }
+                                return null;
+                              },
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                prefixIcon: Icon(IconBroken.Message),
+                                labelText: 'Enter Your Email',
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            TextFormField(
+                              controller: passwordController,
+                              keyboardType: TextInputType.visiblePassword,
+                              validator: (value){
+                                if(value!.isEmpty){
+                                  return 'please enter your password';
+                                }
+                                return null;
+                              },
+
+                              obscureText: RegisterCubit.get(context).isPassword,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                prefixIcon: Icon(IconBroken.Lock),
+                                suffixIcon: IconButton(
+                                  onPressed: (){
+                                    RegisterCubit.get(context).changePasswordVisibility();
+                                  },
+                                  icon: Icon(
+                                    RegisterCubit.get(context).suffix,
+                                  ),
+                                ),
+                                labelText: 'Enter Your Password',
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 30.0,
+                            ),
+                            ConditionalBuilder(
+                              condition: !RegisterCubit.get(context).isRigestaring ,
+                              builder: (context) => Container(
+                                  height: 50,
+                                  color: Colors.grey[300],
                                   child: OutlinedButton(
                                     onPressed: (){
                                       if(formKey.currentState!.validate()){
@@ -159,7 +180,7 @@ class RegisterScreen extends StatelessWidget
                                       children: const [
                                         Expanded(
                                           child: Text(
-                                            'REGISTER',
+                                            'Register',
                                             style: TextStyle(color: Colors.black,
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.bold
@@ -169,14 +190,25 @@ class RegisterScreen extends StatelessWidget
                                         Icon(IconBroken.Login,size: 40,)
                                       ],
                                     ),
-                                  ),
-                                )
+                                  )
+                              ),
+                              fallback: (context) => const Center(child: CircularProgressIndicator()),
                             ),
-                            fallback: (context) => const Center(child: CircularProgressIndicator()),
-                          ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Text('Don\'t have an account?'),
+                                TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text('Login')),
+                              ],
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      )
+                    ],
                   ),
                 ),
               ),

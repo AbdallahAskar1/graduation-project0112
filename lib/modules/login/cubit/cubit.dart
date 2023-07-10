@@ -1,20 +1,15 @@
-import 'package:bloc/bloc.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_scan_for_solution/components/components.dart';
 import 'package:my_scan_for_solution/modules/login/cubit/state.dart';
 import 'package:my_scan_for_solution/style/icon_broken.dart';
 
 import '../../../models/login_model.dart';
 import '../../../shared/network/dio_helper.dart';
 import '../../../shared/end_points.dart';
-// import 'package:untitled1/models/login_model.dart';
-// import 'package:untitled1/modules/Login/cubit/state.dart';
-// import 'package:untitled1/shared/end_points.dart';
-// import 'package:untitled1/shared/network/dio_helper.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  IconData suffix = IconBroken.Password;
+  IconData suffix = Icons.visibility_off_outlined;
   bool isPassword = true;
 
   LoginCubit() : super(LoginInitialState());
@@ -23,21 +18,19 @@ class LoginCubit extends Cubit<LoginState> {
 
   void changePasswordVisibility(context) {
     isPassword = !isPassword;
-    suffix =
-    isPassword ? IconBroken.Hide : IconBroken.Show;
+    suffix = isPassword ? Icons.visibility_off_outlined : Icons.visibility_outlined;
     emit(ShopChangePasswordVisibilityState());
   }
 
   Widget errorWidget = Container();
   LoginModel? loginModel;
 
-
-  void userLogin(context,{
+  void userLogin(
+    context, {
     required String username,
     required String password,
   }) {
     emit(AppLoginLoadingState());
-
 
     DioHelper.postData(
         url: LOGIN,
@@ -46,31 +39,10 @@ class LoginCubit extends Cubit<LoginState> {
       print("succ");
       emit(AppLoginSuccessState(loginModel!));
     }).catchError((error) {
-
       print("####################################${error.toString()}");
-      showDialog(
+      showErrorDialog(
           context: context,
-          builder: (_) {
-            return  AlertDialog(
-              title: SingleChildScrollView(
-
-                child: Column(
-                  children: const [
-                    Text(
-                      "Some Thing Wrong\n user not found \n or \n user not found",
-                      maxLines: 1,
-                      style: TextStyle(
-                        color: Colors.red,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              // actions: []
-            );
-          });
+          text: "Some Thing Wrong\n user not found \n or \n wrong password");
 
       emit(AppLoginErrorState(error.toString()));
     });
@@ -81,3 +53,4 @@ class LoginCubit extends Cubit<LoginState> {
     emit(ErrorWidetChangeState());
   }
 }
+//
